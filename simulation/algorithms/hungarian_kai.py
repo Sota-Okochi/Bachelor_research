@@ -1,9 +1,3 @@
-from ap import Ap  # 1基地局が持つデータ構造
-import cal
-from term import Term  # 端末1台が持つデータ構造
-from os.path import dirname, abspath
-import sys
-import json
 import math as Math
 import numpy as np
 # from munkres import Munkres
@@ -12,20 +6,17 @@ from typing import List
 from functools import reduce
 import csv
 import os
-from model import TERM_AP, TERM_AP_NFSPL
-import rand
-# from joblib import Parallel, delayed #並列処理
+import sys
 
-
-parent_dir = dirname(dirname(abspath(__file__)))
-if parent_dir not in sys.path:  # 追加
-    sys.path.append(parent_dir)  # 追加
+from simulation.config import load_app_config, load_sim_config
+from simulation.entities.ap import Ap  # 1基地局が持つデータ構造
+from simulation.services import cal
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+from simulation.services.model import TERM_AP, TERM_AP_NFSPL
 
 # アプリケーション種類ごとの設定
-with open('app.json', "r", encoding="utf-8") as file:
-    confApp = json.load(file)
-with open('sim.json', "r", encoding="utf-8") as file:
-    confSim = json.load(file)
+confApp = load_app_config()
+confSim = load_sim_config()
 
 
 FIX_DIGIT = Math.pow(10, 6)  # コスト値 int変換桁数(float->int)

@@ -2,21 +2,13 @@
 # その数値をモデルに代入（FSPL）して損失を計算（一つの端末につき3つの基地局までの距離をFSPLに代入し, そのFSPLの増を格納する[[3], [3]...]）
 # それを通信品質に付加する
 
-from os.path import dirname, abspath
-import sys
 import math
 import random
 from typing import List
 from dataclasses import dataclass
 
-parent_dir = dirname(dirname(dirname(abspath(__file__))))
-if parent_dir not in sys.path: # 追加
-    sys.path.append(parent_dir) # 追加
-
-
-from term import Term  # 端末1台が持つデータ構造
-from ap import Ap  #1基地局が持つデータ構造
-from term_ap import TERM_AP
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+from simulation.entities.ap import Ap  # 1基地局が持つデータ構造
 
 @dataclass
 class TERM_AP:
@@ -160,4 +152,3 @@ def nfspl(terms: List["Term"], aps: List["Ap"]) -> List[List[TERM_AP_NFSPL]]:
     #　　・伝搬損失の場合とそれ以外のデータを格納するクラスを指定する必要がある    
     # ・伝搬損失時の各端末の接続先情報の出力
 # -------------------------------------------------------------------------
-

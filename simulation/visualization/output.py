@@ -1,14 +1,12 @@
 from fileinput import filename
-from os.path import dirname, abspath
-import sys
-import json
 import math as Math
 from turtle import shape
 from typing import List
 
-#import * as fs from "fs"; # ファイル出力
-with open('sim.json', "r", encoding="utf-8") as file:
-    confSim = json.load(file)
+from simulation.config import load_sim_config
+
+# import * as fs from "fs"; # ファイル出力
+confSim = load_sim_config()
 
 def satisLimit(satisMovingAve: List, termNumOverLimitArray: List):
     # 出力ファイル名

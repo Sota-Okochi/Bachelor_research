@@ -1,6 +1,3 @@
-from os.path import dirname, abspath
-import sys
-import json
 import math as Math
 import numpy as np
 import copy
@@ -8,18 +5,13 @@ from typing import List
 from functools import reduce
 import csv, os
 
+from simulation.config import load_app_config
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+from simulation.entities.ap import Ap  #1基地局が持つデータ構造
+from simulation.services import cal
 
-parent_dir = dirname(dirname(abspath(__file__)))
-if parent_dir not in sys.path: # 追加
-    sys.path.append(parent_dir) # 追加
-
-from term import Term  # 端末1台が持つデータ構造
-from ap import Ap  #1基地局が持つデータ構造
 # アプリケーション種類ごとの設定
-with open('app.json', "r", encoding="utf-8") as file:
-    confApp = json.load(file)
-
-import cal
+confApp = load_app_config()
 
 FIX_DIGIT = Math.pow(10, 4) #コスト値 int変換桁数(float->int)
 

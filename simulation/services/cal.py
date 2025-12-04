@@ -1,27 +1,17 @@
-from ap import Ap  # 1基地局が持つデータ構造
-import model
-from model import TERM_AP
-from term import Term  # 端末1台が持つデータ構造
-from ast import alias
-from cmath import nan
-from os.path import dirname, abspath
-import sys
-import json
 from statistics import stdev, fmean
 import numpy as np
 from typing import List
 import copy
 import math
 
-parent_dir = dirname(abspath(__file__))
-if parent_dir not in sys.path:  # 追加
-    sys.path.append(parent_dir)  # 追加
+from simulation.config import load_app_config, load_sim_config
+from simulation.entities.ap import Ap  # 1基地局が持つデータ構造
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+import simulation.services.model as model
 
 # アプリケーション種類ごとの設定
-with open('app.json', "r", encoding="utf-8") as file:
-    confApp = json.load(file)
-with open('sim.json', "r", encoding="utf-8") as file:
-    confSim = json.load(file)
+confApp = load_app_config()
+confSim = load_sim_config()
 
 
 init_RTT = confSim["initRTT"]

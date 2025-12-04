@@ -1,19 +1,13 @@
-from os.path import dirname, abspath
-import sys
-import json
 import math as Math
 import random
 from typing import List
 
-parent_dir = dirname(dirname(dirname(abspath(__file__))))
-if parent_dir not in sys.path: # 追加
-    sys.path.append(parent_dir) # 追加
+from simulation.config import load_app_config
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+from simulation.entities.ap import Ap  # 1基地局が持つデータ構造
 
-from term import Term  # 端末1台が持つデータ構造
-from ap import Ap  #1基地局が持つデータ構造
 # アプリケーション種類ごとの設定
-with open('app.json', "r", encoding="utf-8") as file:
-    confApp = json.load(file)
+confApp = load_app_config()
 
 APP_NUM_MAX = len(confApp) #アプリケーションの種類の数
 

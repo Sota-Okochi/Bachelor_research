@@ -1,16 +1,10 @@
-from os.path import dirname, abspath
-import sys, json
 from typing import List
 
-parent_dir = dirname(abspath(__file__))
-if parent_dir not in sys.path: # 追加
-    sys.path.append(parent_dir) # 追加
+from simulation.config import load_sim_config
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+from simulation.entities.ap import Ap  # 1基地局が持つデータ構造
 
-from term import Term  # 端末1台が持つデータ構造 
-from ap import Ap  #1基地局が持つデータ構造
-
-with open('sim.json', "r", encoding="utf-8") as file:
-    confSim = json.load(file)
+confSim = load_sim_config()
 
 # エリア内の基地局生成
 def createAp(apNum: int):

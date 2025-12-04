@@ -1,9 +1,9 @@
-import json
 from typing import Any, List, Dict
 
+from simulation.config import load_app_config
+
 # アプリケーション種類ごとの設定
-with open('app.json', "r", encoding="utf-8") as file:
-    confApp = json.load(file)
+confApp = load_app_config()
 
 # 端末1台が持つデータ構造
 class app:

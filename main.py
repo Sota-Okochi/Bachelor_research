@@ -1,38 +1,22 @@
-from ap import Ap  # 1基地局が持つデータ構造
-from term import Term  # 端末1台が持つデータ構造
-import model
-from result import simResult
-import output as output
-import hungarian_kai as hung
-import graph as gp
-import matplotlib as plt
-from os.path import dirname, abspath
-import sys
-import os
-import json
-import random
-import copy
-import cal
-import rand
-import create
 import time
 from typing import List
-import math as Math
-import numpy as np
-# from munkres import Munkres
 
+from simulation.config import (
+    load_ap_config,
+    load_app_config,
+    load_sim_config,
+)
+from simulation.entities.ap import Ap  # 1基地局が持つデータ構造
+from simulation.entities.term import Term  # 端末1台が持つデータ構造
+from simulation.results.result import simResult
+from simulation.services import cal, rand, create, model
+from simulation.visualization import output as output
+from simulation.visualization import graph as gp
+from simulation.algorithms import hungarian_kai as hung
 
-parent_dir = dirname(abspath(__file__))
-if parent_dir not in sys.path:  # 追加
-    sys.path.append(parent_dir)
-
-
-with open('sim.json', "r", encoding="utf-8") as file:
-    confSim = json.load(file)
-with open('ap.json', "r", encoding="utf-8") as file:
-    confAp = json.load(file)
-with open('app.json', "r", encoding="utf-8") as file:
-    confAPP = json.load(file)
+confSim = load_sim_config()
+confAp = load_ap_config()
+confAPP = load_app_config()
 
 
 if __name__ == '__main__':
